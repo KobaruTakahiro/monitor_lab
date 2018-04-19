@@ -1,0 +1,27 @@
+AWSTemplateFormatVersion: 2010-09-09
+Transform: AWS::Serverless-2016-10-31
+Resources:
+  MonitorCollector:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: monitor
+      Runtime: go1.x
+      CodeUri: ./dist/
+      Timeout: 10
+      MemorySize: 256
+      Events:
+        Timer:
+          Type: Schedule
+          Properties:
+            Schedule: cron(* * * * ? *)
+      Environment:
+        Variables:
+          # Amed : readonly
+          # AWS_ACCESS_KEY_ID: AKIAJIBKCP67CH3IATWQ
+          # AWS_SECRET_ACCESS_KEY: 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
+          # dev : readonly
+          # AWS_ACCESS_KEY_ID: AKIAJIA54GXHJUJ7N3KQ
+          # AWS_SECRET_ACCESS_KEY: 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
+          # dev : kobaru-dev
+          AWS_ACCESS_KEY_ID: AKIAIRHC7BMFTCZXFNJQ
+          AWS_SECRET_ACCESS_KEY: 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
